@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel='icon' type='image/png' href='/fav.png'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <style>
     body,
     h1,
@@ -266,6 +267,13 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init();
+  $(document).ready(function () {
+    var $links = $('.w3-bar-item');
+    $links.click(function () {
+      $links.removeClass('w3-hover-black');
+      $(this).addClass('w3-black');
+    });
+  });
 </script>
 
 </html>
