@@ -55,25 +55,6 @@
       filter: contrast(120%);
       filter: drop-shadow(10px 10px 10px rgb(255, 255, 255));
     }
-
-    .animate {
-      /* position: relative;
-      width: calc(100% - 100px);
-      height: 100%; */
-      animation: to-right-2 1s linear forwards;
-    }
-
-    .reveal {
-      position: relative;
-      transform: translateY(150px);
-      opacity: 0;
-      transition: 1s all ease;
-    }
-
-    .reveal.active {
-      transform: translateY(0);
-      opacity: 1;
-    }
   </style>
 </head>
 
@@ -114,9 +95,7 @@
   <!-- Page Content -->
   <div class="w3-padding-large" id="main">
     <!-- Header/Home -->
-    <header data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000"
-      data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="false" data-aos-anchor-placement="top-center"
-      class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
       <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> Alshoja m Ikbal</h1>
       <p>Senior Software Engineer</p>
       <!-- <img src="/images/man_smoke.jpg" alt="boy" class="w3-image" width="992" height="1108"> -->
@@ -174,7 +153,9 @@
         </a>
 
       </button>
-      <div class="reveal">
+      <div data-aos="zoom-in-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000"
+        data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="false"
+        data-aos-anchor-placement="top-center">
         <!-- Testimonials -->
         <h3 class="w3-padding-24 w3-text-light-grey">Technologies</h3>
         <img src="/images/angular.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
@@ -257,25 +238,6 @@
   </div>
 
 </body>
-<script>
-  function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-
-    for (var i = 0; i < reveals.length; i++) {
-      var windowHeight = window.innerHeight;
-      var elementTop = reveals[i].getBoundingClientRect().top;
-      var elementVisible = 150;
-
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      } else {
-        reveals[i].classList.remove("active");
-      }
-    }
-  }
-
-  window.addEventListener("scroll", reveal);
-</script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init();
