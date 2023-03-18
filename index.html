@@ -281,11 +281,11 @@
         var current = this;
         for (var i = 0; i < elem.length; i++) {
           if (current != elem[i]) {
-            elem[i].classList.remove('active');
-          } else if (current.classList.contains('active') === true) {
-            current.classList.remove('active');
+            elem[i].classList.remove('w3-hover-black');
+          } else if (current.classList.contains('w3-hover-black') === true) {
+            current.classList.remove('w3-hover-black');
           } else {
-            current.classList.add('active')
+            current.classList.add('w3-hover-black')
           }
         }
         e.preventDefault();
