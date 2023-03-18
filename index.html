@@ -267,32 +267,14 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init();
-  // $(document).ready(function () {
-  //   var $links = $('.w3-bar-item');
-  //   $links.click(function () {
-  //     $links.removeClass('w3-hover-black');
-  //     $(this).addClass('w3-black');
-  //   });
-  // });
+  $(document).ready(function () {
+    var $links = $('.w3-bar-item');
+    $links.click(function () {
+      $links.removeClass('w3-hover-black');
+      $(this).addClass('w3-black');
+    });
+  });
 
-  function toggleItem(elem) {
-    for (var i = 0; i < elem.length; i++) {
-      elem[i].addEventListener("click", function (e) {
-        var current = this;
-        for (var i = 0; i < elem.length; i++) {
-          if (current != elem[i]) {
-            elem[i].classList.remove('w3-hover-black');
-          } else if (current.classList.contains('w3-hover-black') === true) {
-            current.classList.remove('w3-hover-black');
-          } else {
-            current.classList.add('w3-hover-black')
-          }
-        }
-        e.preventDefault();
-      });
-    };
-  }
-  toggleItem(document.querySelectorAll('.w3-bar-item'));
 </script>
 
 </html>
