@@ -54,6 +54,34 @@
       filter: contrast(120%);
       filter: drop-shadow(10px 10px 10px rgb(255, 255, 255));
     }
+
+    .animate {
+      /* position: relative;
+      width: calc(100% - 100px);
+      height: 100%; */
+      animation: to-right-2 1s linear forwards;
+    }
+
+    @keyframes to-right-1 {
+      from {
+        right: calc(100% - 100px);
+        ;
+      }
+
+      to {
+        right: 0px;
+      }
+    }
+
+    @keyframes to-right-2 {
+      from {
+        transform: translateX(0%);
+      }
+
+      to {
+        transform: translateX(100%);
+      }
+    }
   </style>
 </head>
 
@@ -101,12 +129,12 @@
     </header>
 
     <!-- About Section -->
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <div class="w3-content w3-justify w3-text-grey w3-padding-64 animate" id="about">
       <h2 class="w3-text-light-grey">About Me</h2>
       <hr style="width:200px" class="w3-opacity">
       <p>
         Hello! Am Alshoja m Ikbal , working as a Senior Software Engineer in Infopark kochi , am a Full Stack developer
-        having more tha 6+ years of experience in Javascript/Typescript based frameworks ,My core skills are pointed to
+        having more than 6+ years of experience in Javascript/Typescript based frameworks ,My core skills are pointed to
         frameworks
         in Node runtime like Aws,Express, NestJS, Koa, Postgres, Sql ,Angular ,Vue etc..
       </p>
