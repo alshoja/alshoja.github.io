@@ -62,25 +62,16 @@
       animation: to-right-2 1s linear forwards;
     }
 
-    @keyframes to-right-1 {
-      from {
-        right: calc(100% - 100px);
-        ;
-      }
-
-      to {
-        right: 0px;
-      }
+    .reveal {
+      position: relative;
+      transform: translateY(150px);
+      opacity: 0;
+      transition: 1s all ease;
     }
 
-    @keyframes to-right-2 {
-      from {
-        transform: translateX(0%);
-      }
-
-      to {
-        transform: translateX(100%);
-      }
+    .reveal.active {
+      transform: translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
@@ -129,7 +120,7 @@
     </header>
 
     <!-- About Section -->
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64 animate" id="about">
+    <div class="w3-content w3-justify w3-text-grey w3-padding-64 animate reveal" id="about">
       <h2 class="w3-text-light-grey">About Me</h2>
       <hr style="width:200px" class="w3-opacity">
       <p>
@@ -260,5 +251,24 @@
   </div>
 
 </body>
+<script>
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active");
+      }
+    }
+  }
+
+  window.addEventListener("scroll", reveal);
+</script>
 
 </html>
