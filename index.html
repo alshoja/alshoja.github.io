@@ -60,6 +60,19 @@
       filter: contrast(120%);
       filter: drop-shadow(10px 10px 10px rgb(255, 255, 255));
     }
+
+    .skills-list {
+      margin: 10px 0;
+      padding-left: 20px;
+      list-style-type: square;
+      /* Styled bullets */
+    }
+
+    .skills-list li {
+      color: #66c2ff;
+      /* Light blue text for skills */
+      margin: 5px 0;
+    }
   </style>
 </head>
 
@@ -119,10 +132,11 @@
       </p>
       <h2>My Expertise</h2>
       <p>My expertise spans across a range of cutting-edge technologies:</p>
-      <ul>
+      <ul class="skills-list">
         <li><strong>Back-End:</strong> Node.js, NestJS, Express.js, Koa</li>
         <li><strong>Databases:</strong> PostgreSQL, MongoDB, MySQL</li>
         <li><strong>Front-End:</strong> Angular, Vue.js, Nuxt.js</li>
+        <li><strong>Cloud Platforms:</strong> AWS, DigitalOcean</li>
       </ul>
       <h2>What I Do</h2>
       <p>
@@ -247,7 +261,8 @@
       <hr style="width:200px" class="w3-opacity">
 
       <div class="w3-section">
-        <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Niemtsch, Brandenburg, Germany
+        <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Niemtsch, Brandenburg,
+          Germany
         </p>
         <!-- <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: <a
             href="tel:+91 7012604301">+49 </a></p> -->
