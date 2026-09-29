@@ -101,24 +101,18 @@
   if (!canvas || !window.THREE) return;
   var THREE = window.THREE;
 
-  function badgeSvg(it, dark, compact) {
-    var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
+  // Round, logo-only badge drawn as SVG, then used as a sprite texture.
+  function badgeSvg(it, dark) {
     var col = logoColor(it, dark);
-    var bg = dark ? '#16171c' : '#ffffff', txt = dark ? '#ecebe6' : '#16171a';
-    var H = 72, W = compact ? 72 : 88 + Math.round(it.n.length * 14.5);
-    var cx = compact ? 36 : 38;
-    var glyph = it.p
-      ? '<g transform="translate(' + (compact ? 18 : 20) + ' 18) scale(1.5)"><path d="' + it.p + '" fill="' + col + '"/></g>'
-      : '<circle cx="' + cx + '" cy="36" r="19" fill="' + col + '"/><text x="' + cx + '" y="36" dy=".36em" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="' + (it.m.length > 2 ? 12 : 15) + '" font-weight="700" fill="#0d0e11">' + esc(it.m) + '</text>';
-    var label = compact ? '' : '<text x="70" y="36" dy=".35em" font-family="Helvetica Neue,Arial,sans-serif" font-size="25" font-weight="600" fill="' + txt + '">' + esc(it.n) + '</text>';
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + W * 2 + '" height="' + H * 2 + '" viewBox="0 0 ' + W + ' ' + H + '">' +
-      '<rect x="2" y="2" width="' + (W - 4) + '" height="' + (H - 4) + '" rx="' + (H / 2 - 2) + '" fill="' + bg + '" stroke="' + it.c + '" stroke-opacity="0.7" stroke-width="2.5"/>' +
-      glyph + label + '</svg>';
-    return { svg: svg, aspect: W / H };
+    var bg = dark ? '#16171c' : '#ffffff';
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 80 80">' +
+      '<circle cx="40" cy="40" r="37" fill="' + bg + '" stroke="' + it.c + '" stroke-opacity="0.75" stroke-width="2.5"/>' +
+      '<g transform="translate(22 22) scale(1.5)"><path d="' + it.p + '" fill="' + col + '"/></g></svg>';
+    return { svg: svg, aspect: 1 };
   }
 
-  function loadBadge(sprite, dark, compact) {
-    var b = badgeSvg(sprite.userData.item, dark, compact);
+  function loadBadge(sprite, dark) {
+    var b = badgeSvg(sprite.userData.item, dark);
     var url = URL.createObjectURL(new Blob([b.svg], { type: 'image/svg+xml' }));
     var img = new Image();
     img.onload = function () {
@@ -203,12 +197,14 @@
 
   // Orbit shells carrying the tech stack as SVG badges.
   var shells = [
-    { r: 3.2, tilt: [1.22, 0.18], speed: 0.16, n: 8 },
-    { r: 4.1, tilt: [1.02, -0.45], speed: -0.1, n: 10 },
-    { r: 5.0, tilt: [1.38, 0.5], speed: 0.07, n: 11 }
+    { r: 3.2, tilt: [1.22, 0.18], speed: 0.16, n: 6 },
+    { r: 4.1, tilt: [1.02, -0.45], speed: -0.1, n: 8 },
+    { r: 5.0, tilt: [1.38, 0.5], speed: 0.07, n: 10 }
   ];
   var ringMat = new THREE.LineBasicMaterial({ transparent: true, opacity: 0.2, depthWrite: false });
   var sprites = [], idx = 0;
+  // Only items with a real logo fly in orbit; letter placeholders stay in the stack list.
+  var ORBIT = ICONS.filter(function (it) { return it.p; });
   shells.forEach(function (sh) {
     var pivot = new THREE.Group();
     pivot.rotation.set(sh.tilt[0], sh.tilt[1], 0);
@@ -217,24 +213,24 @@
     var ring = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), ringMat);
     ring.renderOrder = 50;
     pivot.add(ring);
-    for (var k = 0; k < sh.n && idx < ICONS.length; k++, idx++) {
+    for (var k = 0; k < sh.n && idx < ORBIT.length; k++, idx++) {
       var sp = new THREE.Sprite(new THREE.SpriteMaterial({ transparent: true, depthTest: false, depthWrite: false }));
-      sp.userData = { shell: sh, phase: (k / sh.n) * Math.PI * 2 + sh.r, aspect: 1, item: ICONS[idx] };
+      sp.userData = { shell: sh, phase: (k / sh.n) * Math.PI * 2 + sh.r, aspect: 1, item: ORBIT[idx] };
       pivot.add(sp);
       sprites.push(sp);
     }
   });
 
-  var builtFor = null, builtCompact = null;
+  var builtFor = null;
   var ink = new THREE.Color();
   function applyTheme(dark) {
     ink.set(dark ? '#ecebe6' : '#16171a');
     icoMat.color.copy(ink); icoMat.opacity = dark ? 0.22 : 0.3;
     ringMat.color.copy(ink); ringMat.opacity = dark ? 0.16 : 0.22;
     starMat.color.copy(ink); starMat.opacity = dark ? 0.55 : 0.35;
-    if (builtFor !== dark || builtCompact !== compact) {
-      sprites.forEach(function (sp) { loadBadge(sp, dark, compact); });
-      builtFor = dark; builtCompact = compact;
+    if (builtFor !== dark) {
+      sprites.forEach(function (sp) { loadBadge(sp, dark); });
+      builtFor = dark;
     }
   }
   themeListeners.push(applyTheme);
@@ -279,7 +275,7 @@
     // Intro: the core grows and the shells fly out.
     var p = reduceMotion ? 1 : Math.min(1, (now - t0) / 1800), e = 1 - Math.pow(1 - p, 3);
     core.scale.setScalar(0.55 + 0.45 * e);
-    var sizeH = compact ? 0.62 : 0.48;
+    var sizeH = compact ? 0.66 : 0.72;
     sprites.forEach(function (sp) {
       var ud = sp.userData, sh = ud.shell, a = ud.phase + t * sh.speed, rr = sh.r * (0.2 + 0.8 * e);
       sp.position.set(Math.cos(a) * rr, Math.sin(a) * rr, 0.15 * Math.sin(t * 0.8 + ud.phase));
