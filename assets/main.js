@@ -26,7 +26,7 @@
 
   function applyThemeUi() {
     var dark = isDark();
-    themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeBtn.setAttribute('aria-label', dark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     if (themeMeta) themeMeta.setAttribute('content', dark ? '#0d0e11' : '#f6f4ef');
     themeListeners.forEach(function (fn) { fn(dark); });
   }
@@ -45,7 +45,7 @@
   function setMenu(open) {
     navLinks.classList.toggle('open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menuBtn.setAttribute('aria-label', open ? 'Close Menu' : 'Open Menu');
   }
   menuBtn.addEventListener('click', function () { setMenu(!navLinks.classList.contains('open')); });
   navLinks.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
@@ -204,7 +204,7 @@
   var ringMat = new THREE.LineBasicMaterial({ transparent: true, opacity: 0.2, depthWrite: false });
   var sprites = [], idx = 0;
   // Only pictorial logos fly in orbit. Logos built from letters stay in the stack list.
-  var LETTER_LOGOS = ['Node.js', 'Express', 'Koa', 'TypeScript', 'Storybook', 'MySQL', 'Nginx', 'npm', 'Angular', 'Vue.js'];
+  var LETTER_LOGOS = ['Node.js', 'Express', 'Koa', 'TypeScript', 'Storybook', 'MySQL', 'Nginx', 'NPM', 'Angular', 'Vue.js'];
   var ORBIT = ICONS.filter(function (it) { return it.p && LETTER_LOGOS.indexOf(it.n) === -1; });
   shells.forEach(function (sh) {
     var pivot = new THREE.Group();
