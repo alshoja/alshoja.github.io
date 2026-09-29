@@ -355,7 +355,10 @@ em { font-style: normal; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 14px 0; font-size: 17px; color: var(--text); }
   .nav-links .pill-btn { justify-content: center; margin-top: 8px; padding: 0 20px; }
-  #universe { height: 300px; }
+  /* on phones the globe sits between the headline and the buttons */
+  .hero-top { order: 1; }
+  #universe { height: 270px; order: 2; }
+  .hero-bottom { order: 3; }
   .hero-inner { padding-top: 0; padding-bottom: 40px; gap: 22px; }
   .lead { font-size: 17px; }
   .cta { flex-direction: column; width: 100%; }
