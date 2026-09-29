@@ -39,6 +39,7 @@
 }
 
 :root {
+  --z: 1;
   --amber-rgb: 242, 182, 96;
   --coral-rgb: 255, 122, 89;
   --violet-rgb: 167, 139, 250;
@@ -113,9 +114,12 @@ em { font-style: normal; }
 .menu-btn { display: none; }
 
 /* HERO */
-.hero { position: relative; min-height: calc(100vh - 88px); max-height: 900px; display: flex; overflow: hidden; }
-#universe { position: absolute; right: -160px; top: 0; width: min(920px, 70vw); height: 100%; pointer-events: none; z-index: 0; }
-.hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 64px; padding-top: 110px; padding-bottom: 80px; }
+/* Hero fills the first screen (minus the nav), within sensible bounds. --z undoes page zoom on big screens. */
+.hero { position: relative; min-height: clamp(640px, calc(100vh / var(--z) - 88px), 1000px); display: flex; overflow: hidden; }
+/* The globe is anchored to the content column, so it lines up on every screen width. */
+#universe { position: absolute; top: 0; bottom: 0; right: calc(-1 * var(--gutter)); width: 64%; height: 100%; pointer-events: none; z-index: 0; }
+.hero-inner > :not(#universe) { position: relative; z-index: 1; }
+.hero-inner { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 64px; padding-top: 110px; padding-bottom: 80px; }
 .hero-top { display: flex; flex-direction: column; gap: 32px; }
 .status { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; color: var(--muted); }
 .pulse { width: 8px; height: 8px; border-radius: 50%; background: #3fbf6a; animation: pulse 1.8s ease-out infinite; }
@@ -326,7 +330,10 @@ em { font-style: normal; }
   .split-body { grid-column: 1 / -1; }
   .cards { grid-template-columns: 1fr; }
   .hero-bottom { flex-direction: column; align-items: flex-start; }
-  .s1 { display: none; }
+  .hero { min-height: 0; }
+  #universe { position: relative; right: auto; width: 100%; height: 460px; }
+  .hero-inner { padding-top: 24px; gap: 40px; }
+  .s1, .s2 { display: none; }
   .contact { grid-template-columns: 1fr; padding: 48px; gap: 48px; }
   .project { grid-template-columns: 1fr; padding: 40px; }
 }
@@ -342,10 +349,8 @@ em { font-style: normal; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 14px 0; font-size: 17px; color: var(--text); }
   .nav-links .pill-btn { justify-content: center; margin-top: 8px; padding: 0 20px; }
-  .hero { min-height: 0; max-height: none; flex-direction: column; }
-  #universe { position: relative; right: auto; width: 100%; height: 380px; }
+  #universe { height: 380px; }
   .hero-inner { padding-top: 8px; padding-bottom: 48px; gap: 28px; }
-  .s2 { display: none; }
   .lead { font-size: 17px; }
   .cta { flex-direction: column; width: 100%; }
   .cta .btn { width: 100%; height: 52px; }
@@ -361,3 +366,8 @@ em { font-style: normal; }
   .deco-code { left: auto; right: -70px; bottom: -60px; }
   .footer { flex-direction: column-reverse; align-items: flex-start; margin-top: 64px; }
 }
+
+/* LARGE SCREENS: scale the layout up on 2K and 4K displays. */
+@media (min-width: 2200px) { :root { --z: 1.25; } body { zoom: var(--z); } }
+@media (min-width: 2800px) { :root { --z: 1.5; } }
+@media (min-width: 3400px) { :root { --z: 1.8; } }
