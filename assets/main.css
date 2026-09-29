@@ -214,6 +214,57 @@ em { font-style: normal; }
 .chips li .dot { width: 8px; height: 8px; border-radius: 50%; background: rgb(var(--g)); }
 .chips li svg { width: 18px; height: 18px; flex-shrink: 0; }
 
+/* PROJECT */
+.project {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: start;
+  padding: 48px; border-radius: 28px; background: var(--surface); border: 1px solid var(--line);
+}
+.project-info { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag {
+  display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-radius: 999px;
+  font: 500 13px var(--mono); color: var(--muted); border: 1px solid var(--btn-line);
+}
+.tag .pulse { width: 7px; height: 7px; background: var(--amber); animation-name: pulse-amber; }
+.project-title { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 4vw, 52px); letter-spacing: -0.04em; line-height: 1; }
+.project-lead { font-size: 18px; line-height: 1.6; color: var(--muted); }
+.project-points { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.5; }
+.project-points li { position: relative; padding-left: 22px; }
+.project-points li::before { content: ''; position: absolute; left: 0; top: .5em; width: 10px; height: 6px; border-left: 2px solid var(--lime); border-bottom: 2px solid var(--lime); transform: rotate(-45deg); }
+.project-chips { --g: var(--amber-rgb); }
+.project-chips li { height: 34px; font-size: 14px; padding: 0 14px 0 11px; }
+.project-btn { margin-top: 4px; }
+
+.chat { border-radius: 22px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; display: flex; flex-direction: column; min-height: 420px; }
+.chat-head { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: rgba(var(--violet-rgb), var(--soft-a)); color: var(--violet); display: flex; align-items: center; justify-content: center; }
+.chat-avatar svg { width: 22px; height: 22px; }
+.chat-name { font-weight: 600; font-size: 15px; }
+.chat-status { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.chat-status .pulse { width: 6px; height: 6px; }
+.chat-body { flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px; }
+.msg { max-width: 86%; padding: 12px 14px; border-radius: 16px; font-size: 14px; line-height: 1.5; }
+.msg-user { align-self: flex-end; background: var(--accent); color: #0d0e11; border-bottom-right-radius: 6px; }
+.msg-bot { align-self: flex-start; background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.sources { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.source { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 8px; font: 12px var(--mono); color: var(--sky); background: rgba(var(--sky-rgb), var(--soft-a)); }
+.source svg { width: 13px; height: 13px; }
+.typing { display: flex; gap: 5px; padding: 14px 16px; }
+.typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: dot 1s ease-in-out infinite; }
+.typing span:nth-child(2) { animation-delay: .15s; } .typing span:nth-child(3) { animation-delay: .3s; }
+.chat-input { display: flex; align-items: center; justify-content: space-between; margin: 0 14px 14px; padding: 8px 8px 8px 16px; border-radius: 14px; border: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.chat-send { width: 34px; height: 34px; border-radius: 10px; background: var(--violet); color: #0d0e11; display: flex; align-items: center; justify-content: center; }
+.chat-send svg { width: 16px; height: 16px; }
+/* Looping conversation: question, typing, answer. */
+.chat .m1 { animation: m1 10s ease infinite; }
+.chat .m2 { animation: m2 10s ease infinite; }
+.chat .m3 { animation: m3 10s ease infinite; }
+@keyframes m1 { 0%, 4% { opacity: 0; transform: translateY(10px); } 9%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes m2 { 0%, 14% { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; margin-top: -12px; } 17%, 34% { opacity: 1; max-height: 40px; padding-top: 14px; padding-bottom: 14px; margin-top: 0; } 37%, 100% { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; margin-top: -12px; } }
+@keyframes m3 { 0%, 36% { opacity: 0; transform: translateY(10px); } 42%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes dot { 0%, 100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(-4px); opacity: 1; } }
+@keyframes pulse-amber { 0% { box-shadow: 0 0 0 0 rgba(242, 182, 96, .55); } 100% { box-shadow: 0 0 0 8px rgba(242, 182, 96, 0); } }
+
 /* CONTACT */
 #contact { padding-top: 160px; }
 .contact {
@@ -261,7 +312,8 @@ em { font-style: normal; }
 .js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .rise, .pulse, .float, .bob, .draw, .blink, .caret, .dev-illo * { animation: none !important; }
+  .rise, .pulse, .float, .bob, .draw, .blink, .caret, .dev-illo *, .chat * { animation: none !important; }
+  .chat .m2 { display: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 
@@ -276,6 +328,7 @@ em { font-style: normal; }
   .hero-bottom { flex-direction: column; align-items: flex-start; }
   .s1 { display: none; }
   .contact { grid-template-columns: 1fr; padding: 48px; gap: 48px; }
+  .project { grid-template-columns: 1fr; padding: 40px; }
 }
 @media (max-width: 760px) {
   :root { --gutter: 20px; }
@@ -303,6 +356,8 @@ em { font-style: normal; }
   .stack-row { grid-template-columns: 1fr; gap: 12px; padding: 18px 0; }
   .chips li { height: 36px; font-size: 14px; }
   .contact { padding: 28px 22px; border-radius: 24px; }
+  .project { padding: 24px 20px; border-radius: 24px; gap: 32px; }
+  .chat { min-height: 380px; }
   .deco-code { left: auto; right: -70px; bottom: -60px; }
   .footer { flex-direction: column-reverse; align-items: flex-start; margin-top: 64px; }
 }
