@@ -132,7 +132,9 @@
     canvas.style.display = 'none';
     return;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  // Page zoom on 2K/4K screens enlarges the canvas, so render at a matching resolution.
+  var pageZoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+  renderer.setPixelRatio(Math.min((window.devicePixelRatio || 1) * pageZoom, 3));
 
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
@@ -141,9 +143,12 @@
   function fit() {
     var w = canvas.clientWidth || 800, h = canvas.clientHeight || 760;
     compact = w < 520;
-    camera.position.set(0, 0, compact ? 15 : 15.5);
+    // Pull the camera back until the outer orbit (plus badges) fits both the
+    // width and the height of the canvas, whatever its shape.
+    var aspect = w / h, reach = 5.9, tanHalf = Math.tan(THREE.MathUtils.degToRad(20));
+    camera.position.set(0, 0, Math.max(reach / tanHalf, reach / (tanHalf * aspect)));
     renderer.setSize(w, h, false);
-    camera.aspect = w / h;
+    camera.aspect = aspect;
     camera.updateProjectionMatrix();
   }
   fit();
