@@ -57,25 +57,22 @@
   var SVG_NS = 'http://www.w3.org/2000/svg';
   var chipPaths = [];
 
+  // orbit = true prefers the letter-free glyph, so no text flies around the globe.
+  function glyphMarkup(it, col, orbit) {
+    if (it.o && (orbit || !it.p)) return it.o.replace(/COL/g, col);
+    return '<path d="' + it.p + '" fill="' + col + '"/>';
+  }
   document.querySelectorAll('.chips li').forEach(function (li) {
     var it = byName[li.textContent.trim()];
-    if (it && it.p) {
-      var svg = document.createElementNS(SVG_NS, 'svg');
-      svg.setAttribute('viewBox', '0 0 24 24');
-      svg.setAttribute('aria-hidden', 'true');
-      var path = document.createElementNS(SVG_NS, 'path');
-      path.setAttribute('d', it.p);
-      svg.appendChild(path);
-      li.insertBefore(svg, li.firstChild);
-      chipPaths.push({ path: path, it: it });
-    } else {
-      var dot = document.createElement('span');
-      dot.className = 'dot';
-      li.insertBefore(dot, li.firstChild);
-    }
+    if (!it) return;
+    var svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    li.insertBefore(svg, li.firstChild);
+    chipPaths.push({ svg: svg, it: it });
   });
   function colorChips(dark) {
-    chipPaths.forEach(function (c) { c.path.setAttribute('fill', logoColor(c.it, dark)); });
+    chipPaths.forEach(function (c) { c.svg.innerHTML = glyphMarkup(c.it, logoColor(c.it, dark)); });
   }
   themeListeners.push(colorChips);
   colorChips(isDark());
@@ -107,7 +104,7 @@
     var bg = dark ? '#16171c' : '#ffffff';
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 80 80">' +
       '<circle cx="40" cy="40" r="37" fill="' + bg + '" stroke="' + it.c + '" stroke-opacity="0.75" stroke-width="2.5"/>' +
-      '<g transform="translate(22 22) scale(1.5)"><path d="' + it.p + '" fill="' + col + '"/></g></svg>';
+      '<g transform="translate(22 22) scale(1.5)">' + glyphMarkup(it, col, true) + '</g></svg>';
     return { svg: svg, aspect: 1 };
   }
 
@@ -197,15 +194,13 @@
 
   // Orbit shells carrying the tech stack as SVG badges.
   var shells = [
-    { r: 3.2, tilt: [1.22, 0.18], speed: 0.16, n: 4 },
-    { r: 4.1, tilt: [1.02, -0.45], speed: -0.1, n: 5 },
-    { r: 5.0, tilt: [1.38, 0.5], speed: 0.07, n: 5 }
+    { r: 3.2, tilt: [1.22, 0.18], speed: 0.16, n: 10 },
+    { r: 4.1, tilt: [1.02, -0.45], speed: -0.1, n: 12 },
+    { r: 5.0, tilt: [1.38, 0.5], speed: 0.07, n: 12 }
   ];
   var ringMat = new THREE.LineBasicMaterial({ transparent: true, opacity: 0.2, depthWrite: false });
   var sprites = [], idx = 0;
-  // Only pictorial logos fly in orbit. Logos built from letters stay in the stack list.
-  var LETTER_LOGOS = ['Node.js', 'Express', 'Koa', 'TypeScript', 'Storybook', 'MySQL', 'Nginx', 'NPM', 'Angular', 'Vue.js'];
-  var ORBIT = ICONS.filter(function (it) { return it.p && LETTER_LOGOS.indexOf(it.n) === -1; });
+  var ORBIT = ICONS;
   shells.forEach(function (sh) {
     var pivot = new THREE.Group();
     pivot.rotation.set(sh.tilt[0], sh.tilt[1], 0);
@@ -276,7 +271,7 @@
     // Intro: the core grows and the shells fly out.
     var p = reduceMotion ? 1 : Math.min(1, (now - t0) / 1800), e = 1 - Math.pow(1 - p, 3);
     core.scale.setScalar(0.55 + 0.45 * e);
-    var sizeH = compact ? 0.66 : 0.72;
+    var sizeH = compact ? 0.58 : 0.62;
     sprites.forEach(function (sp) {
       var ud = sp.userData, sh = ud.shell, a = ud.phase + t * sh.speed, rr = sh.r * (0.2 + 0.8 * e);
       sp.position.set(Math.cos(a) * rr, Math.sin(a) * rr, 0.15 * Math.sin(t * 0.8 + ud.phase));
