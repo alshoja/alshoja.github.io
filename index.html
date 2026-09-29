@@ -25,7 +25,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/main.css">
 </head>
 <body>
@@ -33,7 +33,7 @@
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="#top" class="brand"><span class="brand-mark">a</span>alshoja.dev</a>
+      <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true">a<span class="caret"></span></span>alshoja.dev</a>
       <nav class="nav-links" id="nav-links" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#stack">Stack</a>
@@ -61,11 +61,11 @@
       <div class="wrap hero-inner">
         <div class="hero-top">
           <div class="status rise"><span class="pulse"></span>Open to new opportunities · Berlin, Germany</div>
-          <h1 class="hero-title rise d1">Alshoja M Ikbal builds
-            <span class="squiggle c-coral">fast,<svg viewBox="0 0 210 22" fill="none" aria-hidden="true"><path class="draw" d="M3 14c20-10 34 8 52 0s32-10 50 0 34 8 52 0 32-8 50 0" stroke="var(--amber)" stroke-width="5" stroke-linecap="round"/></svg></span>
-            <em class="c-violet">scalable</em> software for the <em class="c-sky">web</em>.
-            <svg class="sparkle float s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#ff6fae"/></svg>
-            <svg class="sparkle float f2 s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#9be15d"/></svg>
+          <h1 class="hero-title rise d1">Hi, I’m Alshoja. I build
+            <span class="squiggle c-coral">web apps<svg viewBox="0 0 210 22" preserveAspectRatio="none" fill="none" aria-hidden="true"><path class="draw" d="M3 14c20-10 34 8 52 0s32-10 50 0 34 8 52 0 32-8 50 0" stroke="var(--amber)" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span>
+            that <em class="c-violet">scale</em>.
+            <svg class="glyph float s1" viewBox="0 0 24 24" fill="none" stroke="#ff6fae" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+            <svg class="glyph float f2 s2" viewBox="0 0 24 24" fill="none" stroke="#9be15d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M6 9l3 3-3 3M12 15h5"/></svg>
           </h1>
         </div>
         <div class="hero-bottom rise d2">
@@ -105,12 +105,12 @@
             <p>REST and GraphQL APIs on Node.js, with reliable job queues and messaging via BullMQ, RabbitMQ and Redis.</p>
           </article>
           <article class="card reveal">
-            <div class="card-icon t-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7z"/></svg></div>
+            <div class="card-icon t-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div>
             <h3>AI‑powered products</h3>
             <p>RAG pipelines on PostgreSQL + pgvector, and an AI-assisted workflow with Claude Code and Codex.</p>
           </article>
           <article class="card reveal">
-            <div class="card-icon t-lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></div>
+            <div class="card-icon t-lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="2.5"/><path d="M2 8h20M5.5 5.5h.01M8 5.5h.01M10.5 5.5h.01M9 12l-2.5 2.5L9 17M15 12l2.5 2.5L15 17"/></svg></div>
             <h3>Interactive front‑ends</h3>
             <p>Angular, Vue and Nuxt apps, component libraries in Storybook, and 3D experiences with Three.js.</p>
           </article>
@@ -152,8 +152,8 @@
     <!-- CONTACT -->
     <section class="wrap" id="contact">
       <div class="contact reveal">
-        <svg class="deco-orbit" viewBox="0 0 260 260" aria-hidden="true"><circle cx="130" cy="130" r="90" fill="none" stroke="var(--violet)" stroke-width="2" stroke-dasharray="4 10"/><circle cx="130" cy="130" r="54" fill="var(--violet-soft)"/><circle class="float" cx="210" cy="70" r="14" fill="var(--amber)"/></svg>
-        <svg class="sparkle float f3 s3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#5cc8ff"/></svg>
+        <svg class="deco-code bob" viewBox="0 0 260 170" aria-hidden="true"><rect x="1" y="1" width="258" height="168" rx="16" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/><circle cx="22" cy="20" r="5" fill="#ff7a59"/><circle cx="38" cy="20" r="5" fill="#f2b660"/><circle cx="54" cy="20" r="5" fill="#9be15d"/><path d="M1 38h258" stroke="var(--line)" stroke-width="2"/><rect x="22" y="56" width="46" height="9" rx="4.5" fill="#a78bfa"/><rect x="76" y="56" width="70" height="9" rx="4.5" fill="#5cc8ff"/><rect x="40" y="78" width="60" height="9" rx="4.5" fill="#ff6fae"/><rect x="108" y="78" width="90" height="9" rx="4.5" fill="#f2b660" opacity=".8"/><rect x="40" y="100" width="110" height="9" rx="4.5" fill="#9be15d" opacity=".8"/><rect x="22" y="122" width="30" height="9" rx="4.5" fill="#a78bfa"/><rect x="60" y="120" width="3" height="14" fill="var(--text)" class="blink"/></svg>
+        <svg class="glyph float f3 s3" viewBox="0 0 24 24" fill="none" stroke="#5cc8ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4c-2 0-3 1-3 3v2c0 1.5-1 3-2 3 1 0 2 1.5 2 3v2c0 2 1 3 3 3M16 4c2 0 3 1 3 3v2c0 1.5 1 3 2 3-1 0-2 1.5-2 3v2c0 2-1 3-3 3"/></svg>
         <div class="contact-info">
           <div>
             <div class="eyebrow c-pink">03 / Contact</div>
