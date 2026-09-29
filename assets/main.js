@@ -90,38 +90,6 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* ---------- Terminal intro: type the text out ----------
-     The full sentence is in the HTML, so screen readers and search engines get
-     it all; sighted visitors see it typed with a blinking caret. */
-  var termOut = document.getElementById('term-out');
-  if (termOut) {
-    var typed = termOut.querySelector('.term-typed');
-    var full = typed.textContent;
-    var caret = document.createElement('span');
-    caret.className = 'term-caret';
-    caret.setAttribute('aria-hidden', 'true');
-    if (reduceMotion) {
-      typed.appendChild(caret);
-    } else {
-      termOut.setAttribute('aria-label', full);
-      typed.setAttribute('aria-hidden', 'true');
-      typed.textContent = '';
-      var text = document.createTextNode('');
-      typed.appendChild(text);
-      typed.appendChild(caret);
-      // Time-based, so it finishes in ~2.6 s even if the device is busy.
-      var TYPE_MS = 2600, started = 0;
-      var step = function () {
-        var now = performance.now();
-        if (!started) started = now;
-        var n = Math.min(full.length, Math.round((now - started) / TYPE_MS * full.length));
-        text.nodeValue = full.slice(0, n);
-        if (n < full.length) setTimeout(step, 24);
-      };
-      setTimeout(step, 900);
-    }
-  }
-
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 
