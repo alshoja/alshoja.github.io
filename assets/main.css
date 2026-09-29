@@ -355,15 +355,18 @@ em { font-style: normal; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 14px 0; font-size: 17px; color: var(--text); }
   .nav-links .pill-btn { justify-content: center; margin-top: 8px; padding: 0 20px; }
-  #universe { height: 380px; }
-  .hero-inner { padding-top: 8px; padding-bottom: 48px; gap: 28px; }
+  #universe { height: 300px; }
+  .hero-inner { padding-top: 0; padding-bottom: 40px; gap: 22px; }
   .lead { font-size: 17px; }
   .cta { flex-direction: column; width: 100%; }
   .cta .btn { width: 100%; height: 52px; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stat, .stat:first-child { padding: 20px 0 20px 16px; border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .stat:nth-child(odd) { padding-left: 0; border-left: 0; }
-  .section, #contact { padding-top: 88px; }
+  .section, #contact { padding-top: 64px; }
+  .about-side { margin-bottom: 20px; }
+  .dev-illo { max-width: 200px; }
+  .statement { margin-bottom: 32px; }
   .stack-row { grid-template-columns: 1fr; gap: 12px; padding: 18px 0; }
   .stack-globe.ready { opacity: .45; }
   .chips li { height: 36px; font-size: 14px; }
@@ -371,7 +374,7 @@ em { font-style: normal; }
   .project { padding: 24px 20px; border-radius: 24px; gap: 32px; }
   .chat { min-height: 380px; }
   .deco-code { left: auto; right: -70px; bottom: -60px; }
-  .footer { flex-direction: column-reverse; align-items: flex-start; margin-top: 64px; }
+  .footer { flex-direction: column-reverse; align-items: flex-start; margin-top: 48px; }
 }
 
 /* LARGE SCREENS: scale the layout up on 2K and 4K displays. */
