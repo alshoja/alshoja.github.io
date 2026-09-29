@@ -172,8 +172,10 @@
       compact = w < 520;
       // Pull the camera back until the outer orbit (plus badges) fits both the
       // width and the height of the canvas, whatever its shape.
-      var aspect = w / h, reach = 5.9, tanHalf = Math.tan(THREE.MathUtils.degToRad(20));
-      camera.position.set(0, 0, Math.max(reach / tanHalf, reach / (tanHalf * aspect)));
+      var aspect = w / h, tanHalf = Math.tan(THREE.MathUtils.degToRad(20));
+      // the orbits are flattened ellipses, so on phones fit their width and height separately
+      var reachX = 5.9, reachY = compact ? 3.6 : 5.9;
+      camera.position.set(0, 0, Math.max(reachY / tanHalf, reachX / (tanHalf * aspect)));
       renderer.setSize(w, h, false);
       camera.aspect = aspect;
       camera.updateProjectionMatrix();
@@ -247,6 +249,75 @@
       window.addEventListener('resize', function () { fit(); applyTheme(isDark()); });
     }
 
+    // The network keeps reaching out: threads grow from its outer neurons to the
+    // orbiting logos, hold on for a moment, then zip onto the logo and let go.
+    var CN = 10, cPos = new Float32Array(CN * 6), cCol = new Float32Array(CN * 6), tipPos = new Float32Array(CN * 3), tipCol = new Float32Array(CN * 3);
+    var cGeo = new THREE.BufferGeometry();
+    cGeo.setAttribute('position', new THREE.BufferAttribute(cPos, 3));
+    cGeo.setAttribute('color', new THREE.BufferAttribute(cCol, 3));
+    var linkLines = new THREE.LineSegments(cGeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false }));
+    linkLines.renderOrder = 60; world.add(linkLines);
+    var tGeo = new THREE.BufferGeometry();
+    tGeo.setAttribute('position', new THREE.BufferAttribute(tipPos, 3));
+    tGeo.setAttribute('color', new THREE.BufferAttribute(tipCol, 3));
+    var linkTips = new THREE.Points(tGeo, new THREE.PointsMaterial({ size: 0.24, map: brain.dot, vertexColors: true, transparent: true, depthWrite: false, alphaTest: 0.02 }));
+    linkTips.renderOrder = 61; world.add(linkTips);
+    // glowing dots flowing along each thread, so the reach is easy to see
+    var BP = 18, bPos = new Float32Array(CN * BP * 3), bCol = new Float32Array(CN * BP * 3);
+    var bGeo = new THREE.BufferGeometry();
+    bGeo.setAttribute('position', new THREE.BufferAttribute(bPos, 3));
+    bGeo.setAttribute('color', new THREE.BufferAttribute(bCol, 3));
+    var beams = new THREE.Points(bGeo, new THREE.PointsMaterial({ size: 0.11, map: brain.dot, vertexColors: true, transparent: true, depthWrite: false, alphaTest: 0.02 }));
+    beams.renderOrder = 60; world.add(beams);
+    var beamFlow = 0;
+    var links = [], la = new THREE.Vector3(), lb = new THREE.Vector3(), lc = new THREE.Vector3(), lColA = new THREE.Color(), lColB = new THREE.Color();
+    for (var li = 0; li < CN; li++) links.push({ sp: null, node: 0, stage: 3, k: 0, wait: 0.4 + li * 0.3 });
+    var LINK_DUR = [0.7, 1.3, 0.45];
+    var hideLink = function (i) {
+      for (var c = 0; c < 6; c++) cPos[i * 6 + c] = 0;
+      tipPos[i * 3] = 0; tipPos[i * 3 + 1] = 0; tipPos[i * 3 + 2] = 1000;
+      for (var q = 0; q < BP; q++) bPos[(i * BP + q) * 3 + 2] = 1000;
+    };
+    var updateLinks = function (dt) {
+      beamFlow = (beamFlow + dt * 1.6) % 1;
+      links.forEach(function (L, i) {
+        if (L.stage === 3) {
+          L.wait -= dt;
+          if (L.wait > 0 || !sprites.length) { hideLink(i); return; }
+          L.sp = sprites[Math.floor(Math.random() * sprites.length)];
+          L.sp.getWorldPosition(lb);
+          L.node = brain.nearestOuter(lb);
+          L.stage = 0; L.k = 0;
+        }
+        L.k += dt / LINK_DUR[L.stage];
+        if (L.k >= 1) {
+          L.stage++; L.k = 0;
+          if (L.stage === 3) { L.wait = 0.2 + Math.random() * 1.2; hideLink(i); return; }
+        }
+        brain.nodeWorld(L.node, la); L.sp.getWorldPosition(lb);
+        world.worldToLocal(la); world.worldToLocal(lb);
+        var e = L.k * L.k * (3 - 2 * L.k);
+        var from = L.stage === 2 ? lc.copy(la).lerp(lb, e) : la;
+        var to = L.stage === 0 ? lc.copy(la).lerp(lb, e) : lb;
+        cPos[i * 6] = from.x; cPos[i * 6 + 1] = from.y; cPos[i * 6 + 2] = from.z;
+        cPos[i * 6 + 3] = to.x; cPos[i * 6 + 4] = to.y; cPos[i * 6 + 5] = to.z;
+        tipPos[i * 3] = to.x; tipPos[i * 3 + 1] = to.y; tipPos[i * 3 + 2] = to.z;
+        brain.nodeColor(L.node, lColA); lColB.set(L.sp.userData.item.c);
+        cCol[i * 6] = lColA.r; cCol[i * 6 + 1] = lColA.g; cCol[i * 6 + 2] = lColA.b;
+        cCol[i * 6 + 3] = lColB.r; cCol[i * 6 + 4] = lColB.g; cCol[i * 6 + 5] = lColB.b;
+        tipCol[i * 3] = lColB.r; tipCol[i * 3 + 1] = lColB.g; tipCol[i * 3 + 2] = lColB.b;
+        for (var q = 0; q < BP; q++) {
+          var u = (q + beamFlow) / BP, o = (i * BP + q) * 3;
+          bPos[o] = from.x + (to.x - from.x) * u; bPos[o + 1] = from.y + (to.y - from.y) * u; bPos[o + 2] = from.z + (to.z - from.z) * u;
+          bCol[o] = lColA.r + (lColB.r - lColA.r) * u; bCol[o + 1] = lColA.g + (lColB.g - lColA.g) * u; bCol[o + 2] = lColA.b + (lColB.b - lColA.b) * u;
+        }
+      });
+      cGeo.attributes.position.needsUpdate = true; cGeo.attributes.color.needsUpdate = true;
+      tGeo.attributes.position.needsUpdate = true; tGeo.attributes.color.needsUpdate = true;
+      bGeo.attributes.position.needsUpdate = true; bGeo.attributes.color.needsUpdate = true;
+    };
+    var lastLinkT = 0;
+
     var mx = 0, my = 0;
     window.addEventListener('pointermove', function (e) {
       var b = canvas.getBoundingClientRect();
@@ -285,6 +356,8 @@
         sp.renderOrder = Math.round(depth * 100);
       });
 
+      var linkDt = Math.max(0, Math.min(0.05, t - lastLinkT)); lastLinkT = t;
+      updateLinks(linkDt);
       rx += (my * 0.25 - rx) * 0.05;
       ry += (mx * 0.4 - ry) * 0.05;
       world.rotation.x = rx; world.rotation.y = ry;
@@ -403,6 +476,20 @@
     };
     return {
       root: root,
+      dot: dot,
+      outerCount: layers[0].n,
+      // world-space position of a neuron
+      nodeWorld: function (i, out) { out.set(nPos[i * 3], nPos[i * 3 + 1], nPos[i * 3 + 2]); return root.localToWorld(out); },
+      nodeColor: function (i, out) { return out.setRGB(nCol[i * 3], nCol[i * 3 + 1], nCol[i * 3 + 2]); },
+      // the outer neuron closest to a world-space point
+      nearestOuter: function (worldPos) {
+        var p = root.worldToLocal(worldPos.clone()), best = 0, bd = Infinity;
+        for (var i = 0; i < layers[0].n; i++) {
+          var dx = nPos[i * 3] - p.x, dy = nPos[i * 3 + 1] - p.y, dz = nPos[i * 3 + 2] - p.z, d = dx * dx + dy * dy + dz * dz;
+          if (d < bd) { bd = d; best = i; }
+        }
+        return best;
+      },
       theme: function (isDark) {
         eMat.opacity = isDark ? 0.32 : 0.5;
         sMat.opacity = isDark ? 0.45 : 0.6;
