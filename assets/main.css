@@ -154,8 +154,27 @@ em { font-style: normal; }
 .section { padding-top: 160px; }
 .split { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
 .split > .eyebrow { grid-column: span 3; }
+.about-side { grid-column: span 3; display: flex; flex-direction: column; gap: 40px; }
+.dev-illo { width: 100%; max-width: 300px; height: auto; overflow: visible; }
+.dev-illo .dev { animation: breathe 3.2s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+.dev-illo .head { animation: nod 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.dev-illo .eyes { animation: eyes 4s infinite; transform-box: fill-box; transform-origin: center; }
+.dev-illo .glow { animation: glow 2.4s ease-in-out infinite; }
+.dev-illo .code-win { animation: bob 5s ease-in-out infinite; }
+.dev-illo .b2 { animation-duration: 4.2s; animation-delay: -1s; }
+.dev-illo .type { transform-box: fill-box; transform-origin: left center; animation: type 6s ease-out infinite; }
+.dev-illo .t2 { animation-delay: .4s; } .dev-illo .t3 { animation-delay: .8s; } .dev-illo .t4 { animation-delay: 1.2s; }
+.dev-illo .t5 { animation-delay: 1.6s; } .dev-illo .t6 { animation-delay: 2s; }
+.dev-illo .steam { animation: steam 2.6s ease-out infinite; }
+.dev-illo .s-b { animation-delay: 1.3s; }
+@keyframes nod { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-2deg) translateY(1px); } }
+@keyframes eyes { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes glow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes type { 0% { transform: scaleX(0); } 12% { transform: scaleX(1); } 88% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes steam { 0% { opacity: 0; transform: translateY(6px); } 30% { opacity: .8; } 100% { opacity: 0; transform: translateY(-14px); } }
 .split-body { grid-column: span 9; display: flex; flex-direction: column; }
-.eyebrow { font-family: var(--mono); font-size: 14px; }
+.eyebrow { font-family: var(--mono); font-size: 14px; white-space: nowrap; }
 .statement { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 56px; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .card {
@@ -242,7 +261,7 @@ em { font-style: normal; }
 .js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .rise, .pulse, .float, .bob, .draw, .blink, .caret { animation: none; }
+  .rise, .pulse, .float, .bob, .draw, .blink, .caret, .dev-illo * { animation: none !important; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 
@@ -250,6 +269,8 @@ em { font-style: normal; }
 @media (max-width: 1100px) {
   :root { --gutter: 40px; }
   .split > .eyebrow { grid-column: 1 / -1; margin-bottom: 24px; }
+  .about-side { grid-column: 1 / -1; flex-direction: row; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; }
+  .dev-illo { max-width: 240px; }
   .split-body { grid-column: 1 / -1; }
   .cards { grid-template-columns: 1fr; }
   .hero-bottom { flex-direction: column; align-items: flex-start; }
