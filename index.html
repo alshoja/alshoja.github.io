@@ -1,338 +1,196 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-  <title> Alshoja M Ikbal | Senior Software Engineer | JavaScript & TypeScript Expert</title>
-  <meta charset="UTF-8">
-  <meta name="description"
-    content="Discover Alshoja M Ikbal, a Senior Software Engineer with 8+ years of expertise in JavaScript, TypeScript, and scalable web applications.">
-  <meta name="keywords" content="alshoja,software developer,javaScript developer,typescript developer">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alshoja M Ikbal | Senior Software Engineer | JavaScript &amp; TypeScript</title>
+  <meta name="description" content="Alshoja M Ikbal — Senior Software Engineer in Berlin with 6+ years building scalable JavaScript and TypeScript applications, distributed back-ends, AI features and interactive front-ends.">
+  <meta name="keywords" content="alshoja, software engineer, javascript developer, typescript developer, node.js, nestjs, three.js, berlin">
   <meta name="author" content="Alshoja M Ikbal">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link rel='icon' type='image/png' href='/fav.png'>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: "Montserrat", sans-serif
-    }
-
-    .w3-dark-grey,
-    .w3-hover-dark-grey:hover,
-    .w3-dark-gray,
-    .w3-hover-dark-gray:hover {
-      color: #fff !important;
-      background-color: #7291a7 !important;
-    }
-
-    .w3-row-padding img {
-      margin-bottom: 12px
-    }
-
-    /* Set the width of the sidebar to 120px */
-    .w3-sidebar {
-      width: 120px;
-      background: #222;
-    }
-
-    /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
-    #main {
-      margin-left: 120px
-    }
-
-    /* Remove margins from "page content" on small screens */
-    @media only screen and (max-width: 600px) {
-      #main {
-        margin-left: 0
-      }
-    }
-
-    .shadow_ {
-      filter: brightness(120%);
-      filter: contrast(120%);
-      filter: drop-shadow(10px 10px 10px rgb(255, 255, 255));
-    }
-
-    .skills-list {
-      margin: 10px 0;
-      padding-left: 20px;
-      list-style-type: square;
-      /* Styled bullets */
-    }
-
-    .skills-list li {
-      color: #66c2ff;
-      /* Light blue text for skills */
-      margin: 5px 0;
-    }
-  </style>
+  <meta name="theme-color" content="#0d0e11">
+  <meta property="og:title" content="Alshoja M Ikbal — Senior Software Engineer">
+  <meta property="og:description" content="Fast, scalable software for the web. 6+ years across the JavaScript and TypeScript ecosystem.">
+  <meta property="og:url" content="https://alshoja.github.io/">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/fav.png">
+  <script>
+    document.documentElement.classList.add('js');
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/main.css">
 </head>
+<body>
+  <a class="skip" href="#about">Skip to content</a>
 
-<body class="w3-black">
-
-  <!-- Icon Bar (Sidebar - hidden on small screens) -->
-  <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-    <!-- Avatar image in top left corner -->
-    <!-- <img src="/images/avatar_smoke.jpg" style="width:100%"> -->
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
-      <i class="fa fa-home w3-xxlarge"></i>
-      <p>HOME</p>
-    </a>
-    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-      <i class="fa fa-user w3-xxlarge"></i>
-      <p>ABOUT</p>
-    </a>
-    <a href="#stacks" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-      <i class="fa fa-ravelry w3-xxlarge"></i>
-      <p>STACKS</p>
-    </a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-      <i class="fa fa-envelope w3-xxlarge"></i>
-      <p>CONTACT</p>
-    </a>
-  </nav>
-
-  <!-- Navbar on small screens (Hidden on medium and large screens) -->
-  <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-    <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
-      <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-      <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-      <a href="#stacks" class="w3-bar-item w3-button" style="width:25% !important">STACKS</a>
-      <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-    </div>
-  </div>
-
-  <!-- Page Content -->
-  <div class="w3-padding-large" id="main">
-    <!-- Header/Home -->
-    <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-      <h1 class="w3-jumbo"><span class="w3-hide-small"></span> Alshoja m Ikbal</h1>
-      <p>Senior Software Engineer</p>
-      <!-- <img src="/images/man_smoke.jpg" alt="boy" class="w3-image" width="992" height="1108"> -->
-    </header>
-
-    <!-- About Section -->
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-      <h2 class="w3-text-light-grey">About Me</h2>
-      <hr style="width:200px" class="w3-opacity">
-      <h1>Hello! I'm Alshoja M Ikbal</h1>
-      <p data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
-        I’m a passionate <strong>Senior Software Engineer</strong> with over <strong>6+ years of experience</strong> in
-        designing and building scalable, high-performance applications.
-        Currently based in <strong>Germany Berlin</strong>, I specialize in full-stack development with a strong focus
-        on <strong>JavaScript</strong> and <strong>TypeScript</strong> ecosystems.
-      </p>
-      <h2>My Expertise</h2>
-      <p>My expertise spans across a range of cutting-edge technologies:</p>
-      <ul data-aos="zoom-in-up" data-aos-easing="linear" data-aos-duration="1500" class="skills-list">
-        <li><strong>Back-End:</strong> Node.js, NestJS, Express.js, Koa</li>
-        <li><strong>Databases:</strong> PostgreSQL, MongoDB, MySQL</li>
-        <li><strong>Front-End:</strong> Angular, Vue.js, Nuxt.js</li>
-        <li><strong>Cloud Platforms:</strong> AWS, DigitalOcean</li>
-      </ul>
-      <h2>What I Do</h2>
-      <p data-aos="fade-right" data-aos-easing="linear" data-aos-duration="1500">
-        I am highly skilled in developing RESTful APIs using Node.js and Express, integrating <strong>GraphQL</strong>
-        for efficient data fetching, and ensuring seamless communication in distributed systems with tools like
-        <strong>RabbitMQ</strong> and <strong>Redis</strong>. My expertise extends to optimizing back-end performance
-        and building scalable systems that can handle high traffic loads and provide real-time data updates.
-      </p>
-      <p data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
-        On the front-end, I focus on delivering intuitive, responsive user interfaces using modern technologies like
-        <strong>Angular</strong>, and <strong>Vue.js</strong>, ensuring smooth user experiences
-        across devices. I am experienced in using <strong>TypeScript</strong> and <strong>HTML5</strong> along with
-        <strong>CSS3</strong>, <strong>SASS</strong>, and <strong>Bootstrap</strong> to create dynamic web applications.
-      </p>
-      <p data-aos="fade-right" data-aos-easing="linear" data-aos-duration="1500">
-        With hands-on experience in <strong>DevOps practices</strong>, including CI/CD pipelines with
-        <strong>Jenkins</strong>, <strong>Docker</strong>, and cloud infrastructure management using
-        <strong>AWS</strong> and <strong>DigitalOcean</strong>, I ensure reliable deployments and continuous
-        integration. I prioritize writing clean, maintainable code using design patterns and test-driven development
-        (TDD) approaches with <strong>Jest</strong> and <strong>Mocha</strong>.
-      </p>
-      <p data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
-        I enjoy collaborating with cross-functional teams and bringing innovative ideas to life while leveraging cloud
-        platforms like <strong>AWS</strong> and <strong>DigitalOcean</strong>. Staying updated with the latest trends
-        and technologies is not just a habit,it's a passion that drives my continuous learning and growth.
-      </p>
-
-      <h2>My Mission</h2>
-      <p data-aos="fade-right" data-aos-easing="linear" data-aos-duration="1500">
-        Whether it’s building robust back-end systems or crafting engaging front-end interfaces, I aim to deliver
-        excellence in every project I take on.
-      </p>
-      <h3 class="w3-padding-16 w3-text-light-grey">Skills</h3>
-      <p class="w3-wide">Front End</p>
-      <div class="w3-white">
-        <div class="w3-dark-grey" style="height:28px;width:95%"></div>
-      </div>
-      <p class="w3-wide">Back End</p>
-      <div class="w3-white">
-        <div class="w3-dark-grey" style="height:28px;width:95%"></div>
-      </div>
-      <p class="w3-wide">Cloud</p>
-      <div class="w3-white">
-        <div class="w3-dark-grey" style="height:28px;width:70%"></div>
-      </div>
-
-      <br>
-
-      <!-- <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
-        <div class="w3-quarter w3-section">
-          <span class="w3-xlarge">10+</span><br>
-          Angular
-        </div>
-        <div class="w3-quarter w3-section">
-          <span class="w3-xlarge">2+</span><br>
-          Vue
-        </div>
-        <div class="w3-quarter w3-section">
-          <span class="w3-xlarge">10+</span><br>
-          Node JS
-        </div>
-        <div class="w3-quarter w3-section">
-          <span class="w3-xlarge">5+</span><br>
-          Aws
-        </div>
-      </div> -->
-
-      <button class="w3-button w3-light-grey w3-padding-large w3-section">
-        <a href="https://drive.google.com/file/d/1Uz3icbAhVTSjuLIMMDHF8YI1-6HUZkn7/view?usp=sharing" download
-          class="w3-hover-text-green">
-          <i class="fa fa-download"></i>
-          Download Resume
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand"><span class="brand-mark">a</span>alshoja.dev</a>
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+        <a class="pill-btn" href="https://drive.google.com/file/d/1Uz3icbAhVTSjuLIMMDHF8YI1-6HUZkn7/view?usp=sharing" target="_blank" rel="noopener">Résumé
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
         </a>
-
-      </button>
-      <div class="w3-padding-64 w3-content w3-text-grey" id="stacks">
-        <!-- Testimonials -->
-        <h2 class="w3-text-light-grey">Technologies</h2>
-        <hr style="width:200px" class="w3-opacity">
-
-        <img data-aos="fade-left" src="/images/angular.svg" alt="Avatar"
-          class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
-        <img data-aos="fade-left" src="/images/nuxt.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-left" src="/images/npm.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-left" src="/images/vuejs.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-
-        <img data-aos="fade-left" src="/images/nestjs.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-left" src="/images/koa.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-left" src="/images/laravel.svg" alt="Avatar"
-          class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
-        <img data-aos="fade-left" src="/images/nodejs.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-
-        <img data-aos="fade-left" src="/images/aws.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-left" src="/images/post.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-right" src="/images/sql.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-right" src="/images/mongo.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-right" src="/images/redis.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-
-        <img data-aos="fade-right" src="/images/git.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-right" src="/images/gitlab.svg" alt="Avatar"
-          class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
-
-        <img data-aos="fade-right" src="/images/nginx.svg" alt="Avatar" class="w3-left w3-circle w3-margin-right shadow"
-          style="width:80px">
-        <img data-aos="fade-right" src="/images/docker.svg" alt="Avatar"
-          class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
-        <img data-aos="fade-right" src="/images/rabbit.svg" alt="Avatar"
-          class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
-        <img data-aos="fade-right" src="/images/express.svg" alt="Avatar"
-          class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
-        <img data-aos="fade-right" src="/images/bit-bucket.svg" alt="Avatar"
-          class="w3-left w3-circle w3-margin-right shadow" style="width:80px">
-
+      </nav>
+      <div class="nav-actions">
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch to light mode">
+          <svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        </button>
+        <button type="button" class="icon-btn menu-btn" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
       </div>
+    </div>
+  </header>
 
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <canvas id="universe" aria-hidden="true"></canvas>
+      <div class="wrap hero-inner">
+        <div class="hero-top">
+          <div class="status rise"><span class="pulse"></span>Open to new opportunities · Berlin, Germany</div>
+          <h1 class="hero-title rise d1">Alshoja M Ikbal builds
+            <span class="squiggle c-coral">fast,<svg viewBox="0 0 210 22" fill="none" aria-hidden="true"><path class="draw" d="M3 14c20-10 34 8 52 0s32-10 50 0 34 8 52 0 32-8 50 0" stroke="var(--amber)" stroke-width="5" stroke-linecap="round"/></svg></span>
+            <em class="c-violet">scalable</em> software for the <em class="c-sky">web</em>.
+            <svg class="sparkle float s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#ff6fae"/></svg>
+            <svg class="sparkle float f2 s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#9be15d"/></svg>
+          </h1>
+        </div>
+        <div class="hero-bottom rise d2">
+          <p class="lead">Senior Software Engineer with 6+ years across the JavaScript and TypeScript ecosystem — from distributed back-ends and AI-powered features to polished, interactive front-ends.</p>
+          <div class="cta">
+            <a href="#contact" class="btn btn-primary">Get in touch
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </a>
+            <a href="https://github.com/alshoja" class="btn btn-ghost" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- End About Section -->
+    <!-- STATS -->
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><div class="stat-num c-amber">6+</div><div class="stat-label">Years building software</div></div>
+        <div class="stat"><div class="stat-num c-coral">Full‑stack</div><div class="stat-label">Back-end to front-end</div></div>
+        <div class="stat"><div class="stat-num c-sky">TS / JS</div><div class="stat-label">Primary ecosystem</div></div>
+        <div class="stat"><div class="stat-num c-violet">AI‑native</div><div class="stat-label">RAG, pgvector, agentic tools</div></div>
+      </div>
     </div>
 
+    <!-- ABOUT -->
+    <section class="section wrap split" id="about">
+      <div class="eyebrow c-sky">01 — About</div>
+      <div class="split-body">
+        <p class="statement reveal">I design and build scalable, high‑performance applications — APIs, distributed systems, AI features, and the interfaces people actually use.</p>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon t-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg></div>
+            <h3>APIs &amp; distributed systems</h3>
+            <p>REST and GraphQL APIs on Node.js, with reliable job queues and messaging via BullMQ, RabbitMQ and Redis.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon t-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17l.7 1.8 1.8.7-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7z"/></svg></div>
+            <h3>AI‑powered products</h3>
+            <p>RAG pipelines on PostgreSQL + pgvector, and an AI-assisted workflow with Claude Code and Codex.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon t-lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></div>
+            <h3>Interactive front‑ends</h3>
+            <p>Angular, Vue and Nuxt apps, component libraries in Storybook, and 3D experiences with Three.js.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <!-- Contact Section -->
-    <div class="w3-padding-64 w3-content w3-text-grey reveal" id="contact">
-      <h2 class="w3-text-light-grey">Contact</h2>
-      <hr style="width:200px" class="w3-opacity">
+    <!-- STACK -->
+    <section class="section wrap split" id="stack">
+      <div class="eyebrow c-lime">02 — Stack</div>
+      <div class="split-body">
+        <div class="stack-row reveal" data-color="coral">
+          <h3 class="stack-label">Back-end</h3>
+          <ul class="chips"><li>Node.js</li><li>NestJS</li><li>Express</li><li>Koa</li><li>Laravel</li><li>GraphQL</li></ul>
+        </div>
+        <div class="stack-row reveal" data-color="sky">
+          <h3 class="stack-label">Front-end</h3>
+          <ul class="chips"><li>Angular</li><li>Vue.js</li><li>Nuxt</li><li>TypeScript</li><li>Three.js</li><li>Storybook</li></ul>
+        </div>
+        <div class="stack-row reveal" data-color="amber">
+          <h3 class="stack-label">Data &amp; queues</h3>
+          <ul class="chips"><li>PostgreSQL</li><li>MongoDB</li><li>MySQL</li><li>Redis</li><li>BullMQ</li><li>RabbitMQ</li></ul>
+        </div>
+        <div class="stack-row reveal" data-color="violet">
+          <h3 class="stack-label">AI &amp; LLM</h3>
+          <ul class="chips"><li>RAG</li><li>pgvector</li><li>Claude Code</li><li>Codex</li></ul>
+        </div>
+        <div class="stack-row reveal" data-color="lime">
+          <h3 class="stack-label">Cloud &amp; DevOps</h3>
+          <ul class="chips"><li>AWS</li><li>DigitalOcean</li><li>Docker</li><li>Nginx</li></ul>
+        </div>
+        <div class="stack-row reveal" data-color="pink">
+          <h3 class="stack-label">Tooling</h3>
+          <ul class="chips"><li>Git</li><li>GitLab</li><li>npm</li></ul>
+        </div>
+      </div>
+    </section>
 
-      <div class="w3-section">
-        <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Niemtsch, Brandenburg,
-          Germany
-        </p>
-        <!-- <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: <a
-            href="tel:+91 7012604301">+49 </a></p> -->
-        <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: <a
-            href="mailto:alshoja@mail.com">alshoja@mail.com</a></p>
-      </div><br>
-      <p>Let's get in touch. Send me a message:</p>
+    <!-- CONTACT -->
+    <section class="wrap" id="contact">
+      <div class="contact reveal">
+        <svg class="deco-orbit" viewBox="0 0 260 260" aria-hidden="true"><circle cx="130" cy="130" r="90" fill="none" stroke="var(--violet)" stroke-width="2" stroke-dasharray="4 10"/><circle cx="130" cy="130" r="54" fill="var(--violet-soft)"/><circle class="float" cx="210" cy="70" r="14" fill="var(--amber)"/></svg>
+        <svg class="sparkle float f3 s3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" fill="#5cc8ff"/></svg>
+        <div class="contact-info">
+          <div>
+            <div class="eyebrow c-pink">03 — Contact</div>
+            <h2 class="contact-title">Let’s build <em class="c-coral">something</em> together.</h2>
+          </div>
+          <div class="contact-lines">
+            <a href="mailto:alshoja@mail.com">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              alshoja@mail.com</a>
+            <div class="muted">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Niemtsch, Brandenburg, Germany</div>
+          </div>
+        </div>
+        <form class="form" action="https://formsubmit.co/el/cotomo" method="POST">
+          <input type="hidden" name="_subject" value="New message from alshoja.github.io">
+          <label>Name<input type="text" name="Name" placeholder="Your name" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" placeholder="you@company.com" autocomplete="email" required></label>
+          <label>Message<textarea name="Message" placeholder="Tell me about your project" rows="5" required></textarea></label>
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-      <form action="https://formsubmit.co/el/cotomo" method="POST">
-        <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
-        <p><input class="w3-input w3-padding-16" type="email" placeholder="Email" required name="email"></p>
-        <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
-        <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
-        <p>
-          <input class="w3-button w3-light-grey w3-padding-large" value="SEND MESSAGE" type="submit">
-          <!-- <i class="fa fa-paper-plane"></i>  -->
-          <!-- </input> -->
-        </p>
-      </form>
-      <!-- End Contact Section -->
-    </div>
+  <footer class="wrap footer">
+    <div>© <span id="year">2026</span> Alshoja M Ikbal</div>
+    <nav aria-label="Social">
+      <a href="https://github.com/alshoja" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/alshoja-m-ikbal-516a55109/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/alshoja_ikbal" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="https://instagram.com/alshoja" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-      <a href="https://facebook.com/alshoja" class="w3-hover-text-green" target="_blank"><i
-          class="fa fa-facebook-official w3-hover-opacity"></i> </a>
-      <a href="https://instagram.com/alshoja" class="w3-hover-text-green" target="_blank"><i
-          class="fa fa-instagram w3-hover-opacity"></i> </a>
-      <a href="https://twitter.com/alshoja_ikbal" class="w3-hover-text-green" target="_blank"><i
-          class="fa fa-twitter w3-hover-opacity"></i> </a>
-      <a href="https://www.linkedin.com/in/alshoja-m-ikbal-516a55109/" class="w3-hover-text-green" target="_blank"><i
-          class="fa fa-linkedin w3-hover-opacity"></i> </a>
-      <a href="https://github.com/alshoja/" class="w3-hover-text-green" target="_blank"><i
-          class="fa fa-github w3-hover-opacity"></i> </a>
-      <p class="w3-medium">Happy Coding <a href="https://github.com/alshoja" target="_blank"
-          class="w3-hover-text-green">@alshoja</a></p>
-      <!-- End footer -->
-    </footer>
-
-    <!-- END PAGE CONTENT -->
-  </div>
-
+  <script src="assets/stack-icons.js"></script>
+  <script src="assets/vendor/three.min.js" defer></script>
+  <script src="assets/main.js" defer></script>
 </body>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-  AOS.init();
-  $(document).ready(function () {
-    var $links = $('.w3-bar-item');
-    $links.click(function () {
-      $links.removeClass('w3-hover-black');
-      $links.removeClass('w3-black');
-      $(this).addClass('w3-black');
-    });
-  });
-
-</script>
-
 </html>
