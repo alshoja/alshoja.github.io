@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/main.css?v=8">
+  <link rel="stylesheet" href="assets/main.css?v=9">
 </head>
 <body>
   <a class="skip" href="#about">Skip to content</a>
@@ -70,7 +70,13 @@
           </h1>
         </div>
         <div class="hero-bottom rise d2">
-          <p class="lead">I'm a Senior Software Engineer in Berlin with over 6 years of experience in JavaScript and TypeScript. I enjoy both sides of the stack, from designing solid APIs and data models to building clean, fast interfaces people like to use.</p>
+          <div class="lead term">
+            <div class="term-bar" aria-hidden="true"><span class="term-dot" style="background:#ff7a59"></span><span class="term-dot" style="background:#f2b660"></span><span class="term-dot" style="background:#9be15d"></span><span class="term-title">zsh — alshoja</span></div>
+            <div class="term-body">
+              <div class="term-cmd" aria-hidden="true"><span class="term-prompt">~ $</span> whoami</div>
+              <p class="term-out" id="term-out"><span class="term-ghost" aria-hidden="true">I'm a Senior Software Engineer in Berlin with over 6 years of experience in JavaScript and TypeScript. I enjoy both sides of the stack, from designing solid APIs and data models to building clean, fast interfaces people like to use.</span><span class="term-typed">I'm a Senior Software Engineer in Berlin with over 6 years of experience in JavaScript and TypeScript. I enjoy both sides of the stack, from designing solid APIs and data models to building clean, fast interfaces people like to use.</span></p>
+            </div>
+          </div>
           <div class="cta">
             <a href="#contact" class="btn btn-primary">Get in touch
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
@@ -284,6 +290,6 @@
   </footer>
 
   <script src="assets/stack-icons.js?v=8"></script>
-  <script src="assets/main.js?v=8" defer></script>
+  <script src="assets/main.js?v=9" defer></script>
 </body>
 </html>
