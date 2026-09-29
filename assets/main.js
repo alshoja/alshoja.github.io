@@ -197,14 +197,15 @@
 
   // Orbit shells carrying the tech stack as SVG badges.
   var shells = [
-    { r: 3.2, tilt: [1.22, 0.18], speed: 0.16, n: 6 },
-    { r: 4.1, tilt: [1.02, -0.45], speed: -0.1, n: 8 },
-    { r: 5.0, tilt: [1.38, 0.5], speed: 0.07, n: 10 }
+    { r: 3.2, tilt: [1.22, 0.18], speed: 0.16, n: 4 },
+    { r: 4.1, tilt: [1.02, -0.45], speed: -0.1, n: 5 },
+    { r: 5.0, tilt: [1.38, 0.5], speed: 0.07, n: 5 }
   ];
   var ringMat = new THREE.LineBasicMaterial({ transparent: true, opacity: 0.2, depthWrite: false });
   var sprites = [], idx = 0;
-  // Only items with a real logo fly in orbit; letter placeholders stay in the stack list.
-  var ORBIT = ICONS.filter(function (it) { return it.p; });
+  // Only pictorial logos fly in orbit. Logos built from letters stay in the stack list.
+  var LETTER_LOGOS = ['Node.js', 'Express', 'Koa', 'TypeScript', 'Storybook', 'MySQL', 'Nginx', 'npm', 'Angular', 'Vue.js'];
+  var ORBIT = ICONS.filter(function (it) { return it.p && LETTER_LOGOS.indexOf(it.n) === -1; });
   shells.forEach(function (sh) {
     var pivot = new THREE.Group();
     pivot.rotation.set(sh.tilt[0], sh.tilt[1], 0);
